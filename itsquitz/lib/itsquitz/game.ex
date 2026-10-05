@@ -3,5 +3,7 @@ defmodule Itsquitz.Game do
 
   resources do
     resource Itsquitz.Game.Quiz
+    resource Itsquitz.Game.Partecipant
+    resource Itsquitz.Game.Answer
   end
 end

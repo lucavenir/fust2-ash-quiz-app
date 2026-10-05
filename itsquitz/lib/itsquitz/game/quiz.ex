@@ -41,4 +41,14 @@ defmodule Itsquitz.Game.Quiz do
 
     attribute :points, :integer, allow_nil?: false
   end
+
+  relationships do
+    many_to_many :partecipants, Itsquitz.Game.Partecipant do
+      through Itsquitz.Game.Answer
+      source_attribute :id
+      source_attribute_on_join_resource :quiz_id
+      destination_attribute :id
+      destination_attribute_on_join_resource :partecipant_id
+    end
+  end
 end
