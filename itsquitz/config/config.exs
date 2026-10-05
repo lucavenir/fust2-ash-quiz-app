@@ -7,6 +7,7 @@
 # General application configuration
 import Config
 config :cinder, default_theme: "daisy_ui"
+config :itsquitz, :ash_domains, [Itsquitz.Game]
 
 # These enable behaviors that will become the default in the next major
 # version of Ash. Setting them now opts your application into the new
