@@ -1,8 +1,3 @@
-# Tool versions are pinned in `.tool-versions`, which mise and asdf both read,
-# so there is only ever one set of versions to keep in sync.
-# Participants: `mise install` gets you the right Erlang/Elixir, then
-# `mise run setup`. Run `mise tasks` to see everything available here.
-
 [tasks.setup]
 description = "install deps, create + migrate the database, build assets"
 run = "mix setup"
