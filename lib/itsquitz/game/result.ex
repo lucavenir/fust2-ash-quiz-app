@@ -1,4 +1,4 @@
-defmodule Itsquitz.Game.Results do
+defmodule Itsquitz.Game.Result do
   use Ash.Resource,
     domain: Itsquitz.Game,
     data_layer: AshPostgres.DataLayer
@@ -20,8 +20,8 @@ defmodule Itsquitz.Game.Results do
   end
 
   relationships do
-    belongs_to :play, Itsquitz.Game.Play
-    belongs_to :player, Itsquitz.Game.Player
-    belongs_to :team, Itsquitz.Game.Team
+    belongs_to :play, Itsquitz.Game.Play, allow_nil?: false
+    belongs_to :player, Itsquitz.Game.Player, allow_nil?: false
+    belongs_to :team, Itsquitz.Game.Team, allow_nil?: false
   end
 end

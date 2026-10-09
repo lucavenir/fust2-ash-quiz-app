@@ -23,6 +23,6 @@ defmodule Itsquitz.Content.Answer do
   end
 
   relationships do
-    belongs_to :question, Itsquitz.Content.Question
+    belongs_to :question, Itsquitz.Content.Question, allow_nil?: false
   end
 end

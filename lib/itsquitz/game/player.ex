@@ -14,7 +14,7 @@ defmodule Itsquitz.Game.Player do
   end
 
   attributes do
-    uuid_primary_key :id
+    uuid_v7_primary_key :id
 
     attribute :username, :string, allow_nil?: false
     attribute :code, :string, allow_nil?: false, default: "42069"
@@ -24,6 +24,7 @@ defmodule Itsquitz.Game.Player do
 
   relationships do
     belongs_to :team, Itsquitz.Game.Team
-    has_many :results, Itsquitz.Game.Results
+
+    has_many :results, Itsquitz.Game.Result
   end
 end
