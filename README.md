@@ -1,14 +1,57 @@
-# Itsquitz
+# itsquitz
 
-applicazione web che permette ad un gruppo di utenti di essere assegnato (da un admin) ad una "stanza" con altri suoi _peers_ allo scopo di vincere un quiz.
+a real-time trivia quiz app for events and walk-by booths.
 
-in questa stanza, l'admin avvia il gioco, e le domande partono. le domande sono risposte multiple su 4. le domande sono a difficoltà incrementale. ogni domanda ha un suo argomento e un suo punteggio. c'è un tempo limite massimo entro il quale i giocatori devono rispondere
+built with **elixir**, **phoenix liveview**, the **ash framework**, and **postgresql 18**.
 
-alla fine della sessione:
-  1. la stanza si "scioglie" e registriamo i risultati, sia quelli individuali, sia quelli "di gruppo"
-  2. la leaderboard individuale si aggiorna, mostrando una top 10
-  3. la leaderbord di gruppo di aggiorna, idem come sopra
+---
 
-inoltre, ogni partecipante poi viene reindirizzato ad una pagina che gli mostra i risultati sia individuali che di gruppo e che lo invita a immettere dei dati (nome, cognome, mail, classe, istituto).
+## how it works
 
-gli utenti arrivano a noi tramite un qr code, che li collega ad una sorta di lobby
+1. **join**: players scan a qr code, enter a 5-digit room code, and pick a username.
+2. **lobby**: a genserver holds players in memory and groups them into teams of 4.
+3. **play**: an admin starts the round. 40 unique questions are picked from postgres (10 per player) with a 2-minute timer.
+4. **score**: player choices stay in memory during play. when time ends, final results freeze to postgres for the leaderboard.
+
+---
+
+## domain structure
+
+### content domain (`Itsquitz.Content`)
+
+* **topic**: category name.
+* **question**: question text, optional image url, topic link.
+* **answer**: option text, points awarded, question link.
+
+### game domain (`Itsquitz.Game`)
+
+* **team**: team name, code.
+* **player**: username, optional team link.
+* **play**: game session state (`:lobby`, `:in_progress`, `:completed`), team link.
+* **player_answer**: in-memory struct (`Ash.DataLayer.Simple`) for active choices during play.
+* **results**: immutable postgres snapshot saved when a round finishes.
+
+---
+
+## setup
+
+### 1. install dependencies
+
+```bash
+mix deps.get
+
+```
+
+### 2. setup database
+
+```bash
+mix ecto.setup
+
+```
+
+### 3. run server
+
+```bash
+mix phx.server
+```
+
