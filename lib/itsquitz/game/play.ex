@@ -24,6 +24,6 @@ defmodule Itsquitz.Game.Play do
   relationships do
     belongs_to :team, Itsquitz.Game.Team, allow_nil?: false
     has_many :player_answers, Itsquitz.Game.PlayerAnswer
-    has_many :results, Itsquitz.Game.Result
+    has_many :results, Itsquitz.Data.Result
   end
 end

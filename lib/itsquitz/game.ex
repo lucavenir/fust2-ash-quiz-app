@@ -9,8 +9,6 @@ defmodule Itsquitz.Game do
       define :join_lobby, action: :join_lobby
     end
 
-    resource Itsquitz.Game.Result
-
     resource Itsquitz.Game.Team do
       define :new_team, action: :create
     end

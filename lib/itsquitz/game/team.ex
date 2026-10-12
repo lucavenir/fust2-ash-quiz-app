@@ -32,7 +32,7 @@ defmodule Itsquitz.Game.Team do
 
   relationships do
     has_many :players, Itsquitz.Game.Player
-    has_many :results, Itsquitz.Game.Result
+    has_many :results, Itsquitz.Data.Result
     has_many :plays, Itsquitz.Game.Play
   end
 end

@@ -1,6 +1,6 @@
-defmodule Itsquitz.Game.Result do
+defmodule Itsquitz.Data.Result do
   use Ash.Resource,
-    domain: Itsquitz.Game,
+    domain: Itsquitz.Data,
     data_layer: AshPostgres.DataLayer
 
   postgres do
