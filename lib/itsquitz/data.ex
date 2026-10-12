@@ -3,5 +3,6 @@ defmodule Itsquitz.Data do
 
   resources do
     resource Itsquitz.Data.Result
+    resource Itsquitz.Data.PersonalInformation
   end
 end

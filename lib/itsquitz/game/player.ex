@@ -40,5 +40,6 @@ defmodule Itsquitz.Game.Player do
     belongs_to :team, Itsquitz.Game.Team
 
     has_many :results, Itsquitz.Data.Result
+    has_one :pi, Itsquitz.Data.PersonalInformation
   end
 end
