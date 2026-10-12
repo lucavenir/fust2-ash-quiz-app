@@ -9,15 +9,23 @@ defmodule Itsquitz.Game.Team do
   end
 
   actions do
-    defaults [:create, :read, :update, :destroy]
-    default_accept [:name, :code]
+    defaults [:read, :update, :destroy]
+    default_accept [:name]
+
+    create :create do
+      accept [:name]
+    end
+  end
+
+  validations do
+    validate string_length(:name, min: 3, max: 30),
+      message: "must be between 3 and 30 characters"
   end
 
   attributes do
     uuid_v7_primary_key :id
 
     attribute :name, :string, allow_nil?: false
-    attribute :code, :string, allow_nil?: false, default: "69420"
 
     timestamps()
   end
